@@ -52,6 +52,8 @@ function Registration() {
             axios.post('http://localhost:8080/member/signup', userData)
                 .then(response => {
                     console.log('Registration successful:', response.data);
+                    //홈으로 리다이렉트
+                    window.location.href='/';
                 })
                 .catch(error => {
                     console.error('Registration failed:', error);

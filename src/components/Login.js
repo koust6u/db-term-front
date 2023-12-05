@@ -1,8 +1,31 @@
+import React, {useState} from 'react';
+import axios from "axios";
+
 
 export default function Login() {
+    const [userId, setUserId] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        axios.post('http://localhost:8080/member/login',
+            JSON.stringify({userId, password}),
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => {
+                console.log('Login Successful');
+                window.location.href = "/";
+            })
+            .catch(error => {
+                console.error('Error: ' + error);
+            });
+
+    }
     return (
         <>
-
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
@@ -16,7 +39,7 @@ export default function Login() {
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form className="space-y-6" action="#" method="POST">
+                    <form className="space-y-6" onSubmit={handleLogin}>
                         <div>
                             <label htmlFor="userId" className="block text-sm font-medium leading-6 text-gray-900">
                                 USER ID
@@ -28,6 +51,8 @@ export default function Login() {
                                     type="userId"
                                     autoComplete="userId"
                                     required
+                                    value={userId}
+                                    onChange={(e) => setUserId(e.target.value)}
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
@@ -35,7 +60,8 @@ export default function Login() {
 
                         <div>
                             <div className="flex items-center justify-between">
-                                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                                <label htmlFor="password"
+                                       className="block text-sm font-medium leading-6 text-gray-900">
                                     Password
                                 </label>
                                 <div className="text-sm">
@@ -51,6 +77,8 @@ export default function Login() {
                                     type="password"
                                     autoComplete="current-password"
                                     required
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
@@ -68,12 +96,13 @@ export default function Login() {
 
                     <p className="mt-10 text-center text-sm text-gray-500">
                         Not a member?{' '}
-                        <a href="/member/signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                        <a href="/member/signup"
+                           className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                             Sign up
                         </a>
                     </p>
                 </div>
             </div>
         </>
-    )
+    );
 }
