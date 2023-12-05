@@ -5,10 +5,10 @@ import {Bars3Icon, BellIcon, XMarkIcon} from '@heroicons/react/24/outline';
 const api = process.env.REACT_APP_LOCAL;
 
 const navigation = [
-    {name: '둘러보기', href: '#', current: true},
-    {name: 'My 서재', href: '/api/', current: false},
+    {name: '둘러보기', href: '/books', current: true},
+    {name: 'My 서재', href: '/api', current: false},
     {name: 'My 대출', href: '#', current: false},
-    {name: 'My 계좌', href: '#', current: false},
+    {name: 'My 계좌', href: '/account', current: false},
 ];
 
 function classNames(...classes) {
@@ -109,13 +109,13 @@ export default function Header({isLoggedIn}) {
                                                     <Menu.Item>
                                                         {({active}) => (
                                                             <a
-                                                                href="/src/components/Member"
+                                                                href="/member/profile"
                                                                 className={classNames(
                                                                     active ? 'bg-gray-100' : '',
                                                                     'block px-4 py-2 text-sm text-gray-700'
                                                                 )}
                                                             >
-                                                                Profile
+                                                                프로필
                                                             </a>
                                                         )}
                                                     </Menu.Item>
@@ -135,13 +135,13 @@ export default function Header({isLoggedIn}) {
                                                     <Menu.Item>
                                                         {({active}) => (
                                                             <a
-                                                                href="#"
+                                                                href="/logout"
                                                                 className={classNames(
                                                                     active ? 'bg-gray-100' : '',
                                                                     'block px-4 py-2 text-sm text-gray-700'
                                                                 )}
                                                             >
-                                                                Sign out
+                                                                로그아웃
                                                             </a>
                                                         )}
                                                     </Menu.Item>

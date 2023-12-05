@@ -8,25 +8,34 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
+import Logout from "./components/Logout";
+import BookList from "./components/BookList";
+import Dashboard from "./components/account/DashBoard";
 
 axios.defaults.withCredentials = true;
 function App() {
-    const [isLoggedIn, setLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
         const fetchLoginStatus = async () => {
             try {
-                // Assuming your API endpoint returns a boolean value
-                const response = await axios.get(`${process.env.REACT_APP_LOCAL}member/health`);
-                console.log(response.data.isLoggedIn);
-                setLoggedIn(response.data.isLoggedIn);
+                const response = await fetch('http://localhost:8080/member/health',{
+                    method: 'GET',
+                    credentials: 'include',
+                });
+
+                if (response.ok) {
+                    setIsLoggedIn(true);
+                } else {
+                    setIsLoggedIn(false);
+                }
             } catch (error) {
-                console.error('Error fetching login status:', error);
+                setIsLoggedIn(false);
             }
         };
 
         fetchLoginStatus();
-    }, []); // Empty dependency array ensures the effect runs only once on mount
+    }, []);
 
     return (
       <BrowserRouter>
@@ -36,6 +45,9 @@ function App() {
                   <Route path={"/login"} Component={Login}/>
                   <Route path={"/member"} Component={Member}/>
                   <Route path={"/member/signup"} Component={SignUp}/>
+                  <Route path={"/logout"} Component={Logout}/>
+                  <Route path={"/books"} Component={BookList} />
+                  <Route path={"/account"} Component={Dashboard}/>
               </Routes>
       </BrowserRouter>
   );
