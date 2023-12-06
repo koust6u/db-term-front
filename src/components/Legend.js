@@ -8,11 +8,10 @@ export default function Legend(){
                     <div className="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
                         <div className="sm:max-w-lg">
                             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                                Summer styles are finally here
+                                온라인 도서 대출 플랫폼
                             </h1>
                             <p className="mt-4 text-xl text-gray-500">
-                                This year, our new summer collection will shelter you from the harsh elements of a world that doesn't care
-                                if you live or die.
+                                여러분들의 책과 이웃의 책을 서로 교환해보세요.
                             </p>
                         </div>
                         <div>
@@ -26,37 +25,14 @@ export default function Legend(){
                                             <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                                                 <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
                                                     <img
-                                                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-01.jpg"
+                                                        src="https://i.namu.wiki/i/HOa6onXorxP-P6KrAy3vCy1LiiP1CKmocBtWoKE8uiC_wO4HsTlN3IQqzFsx_YKuU6BWTVYR3yZXtpMcmKquq65_x1F8YlggFNCQ-aDrHBooaN70qtl9Y5U73LP9z0PNESFKXaB2GRaPk8B4O3AlQw.webp"
                                                         alt=""
                                                         className="h-full w-full object-cover object-center"
                                                     />
                                                 </div>
                                                 <div className="h-64 w-44 overflow-hidden rounded-lg">
                                                     <img
-                                                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg"
-                                                        alt=""
-                                                        className="h-full w-full object-cover object-center"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                                                <div className="h-64 w-44 overflow-hidden rounded-lg">
-                                                    <img
-                                                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-03.jpg"
-                                                        alt=""
-                                                        className="h-full w-full object-cover object-center"
-                                                    />
-                                                </div>
-                                                <div className="h-64 w-44 overflow-hidden rounded-lg">
-                                                    <img
-                                                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-04.jpg"
-                                                        alt=""
-                                                        className="h-full w-full object-cover object-center"
-                                                    />
-                                                </div>
-                                                <div className="h-64 w-44 overflow-hidden rounded-lg">
-                                                    <img
-                                                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-05.jpg"
+                                                        src="https://ppss.kr/wp-content/uploads/2020/11/3-37.jpg"
                                                         alt=""
                                                         className="h-full w-full object-cover object-center"
                                                     />
@@ -65,14 +41,37 @@ export default function Legend(){
                                             <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                                                 <div className="h-64 w-44 overflow-hidden rounded-lg">
                                                     <img
-                                                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-06.jpg"
+                                                        src="https://www.home-learn.co.kr/common/image.do?imgPath=newsroom&imgName=CK20230503160055517.jpg&imgGubun=D"
                                                         alt=""
                                                         className="h-full w-full object-cover object-center"
                                                     />
                                                 </div>
                                                 <div className="h-64 w-44 overflow-hidden rounded-lg">
                                                     <img
-                                                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-07.jpg"
+                                                        src="http://www.jabo.co.kr/imgdata/jabo_co_kr/202203/2022031811147558.png"
+                                                        alt=""
+                                                        className="h-full w-full object-cover object-center"
+                                                    />
+                                                </div>
+                                                <div className="h-64 w-44 overflow-hidden rounded-lg">
+                                                    <img
+                                                        src="https://jmagazine.joins.com/_data2/photo/2023/02/thumb_2041357502_MNtAU9pK_1.jpg"
+                                                        alt=""
+                                                        className="h-full w-full object-cover object-center"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                                                <div className="h-64 w-44 overflow-hidden rounded-lg">
+                                                    <img
+                                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gutenberg_Bible%2C_Lenox_Copy%2C_New_York_Public_Library%2C_2009._Pic_01.jpg/300px-Gutenberg_Bible%2C_Lenox_Copy%2C_New_York_Public_Library%2C_2009._Pic_01.jpg"
+                                                        alt=""
+                                                        className="h-full w-full object-cover object-center"
+                                                    />
+                                                </div>
+                                                <div className="h-64 w-44 overflow-hidden rounded-lg">
+                                                    <img
+                                                        src="https://image.ggumim.co.kr/image/f/600/80/furniture/20210509181258TMua8VoOzM.jpg"
                                                         alt=""
                                                         className="h-full w-full object-cover object-center"
                                                     />
