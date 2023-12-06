@@ -1,12 +1,13 @@
 import React, {Fragment} from 'react';
 import {Disclosure, Menu, Transition} from '@headlessui/react';
 import {Bars3Icon, BellIcon, XMarkIcon} from '@heroicons/react/24/outline';
+import {useLocation} from "react-router-dom";
 
 const api = process.env.REACT_APP_LOCAL;
 
 const navigation = [
-    {name: '둘러보기', href: '/books', current: true},
-    {name: 'My 서재', href: '/api', current: false},
+    {name: '둘러보기', href: '/books', current: false},
+    {name: 'My 서재', href: '/book/my', current: false},
     {name: 'My 대출', href: '#', current: false},
     {name: 'My 계좌', href: '/account', current: false},
 ];
@@ -16,10 +17,13 @@ function classNames(...classes) {
 }
 
 export default function Header({isLoggedIn}) {
+
+    const location = useLocation();
     // Update the navigation array based on the login status
     const visibleNavigation = isLoggedIn
-        ? navigation
+        ? navigation.map((item) => ({ ...item, current: location.pathname === item.href }))
         : navigation.filter((item) => item.name === '둘러보기');
+
 
     return (
         <Disclosure as="nav" className="bg-gray-800">

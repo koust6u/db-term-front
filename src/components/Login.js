@@ -20,7 +20,7 @@ export default function Login() {
                 window.location.href = "/";
             })
             .catch(error => {
-                console.error('Error: ' + error);
+                alert("잘못된 아이디 또는 비밀번호입니다. 다시 입력해주세요.");
             });
 
     }
