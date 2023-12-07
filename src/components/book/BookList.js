@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DefaultModal from "./DefaultModal"; // Import your modal component
-import Pagination from "./Pagination"; // Import your Pagination component
+import Pagination from "../Pagination"; // Import your Pagination component
 
 const MAX_BODY_LENGTH = 150;
 const ITEMS_PER_PAGE = 5;

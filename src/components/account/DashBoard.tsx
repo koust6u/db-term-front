@@ -1,11 +1,29 @@
 // src/components/Dashboard.tsx
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import LogInfo from './LogInfo';
 import DepositForm from './DepositForm';
 import TransferForm from './TransferForm'; // Import the new component
 
 const Dashboard: React.FC = () => {
     const [selectedOption, setSelectedOption] = useState<string>('logInfo');
+    const [authLevel, setAuthLevel] = useState<number | null>(null);
+
+    useEffect(() => {
+        // Assuming you have a function to fetch the auth level
+        const fetchAuthLevel = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/myAuth",{
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                setAuthLevel(data);
+            } catch (error) {
+                console.error("Error fetching auth level:", error);
+            }
+        };
+
+        fetchAuthLevel();
+    }, []);
 
     const renderSelectedComponent = () => {
         switch (selectedOption) {
@@ -13,7 +31,7 @@ const Dashboard: React.FC = () => {
                 return <LogInfo />;
             case 'depositForm':
                 return <DepositForm />;
-            case 'transferForm': // Add case for the new option
+            case 'transferForm':
                 return <TransferForm />;
             default:
                 return null;
@@ -31,9 +49,12 @@ const Dashboard: React.FC = () => {
                     onChange={(e) => setSelectedOption(e.target.value)}
                 >
                     <option value="logInfo">계좌 조회</option>
-                    <option value="depositForm">계좌 충전</option>
-                    <option value="transferForm">계좌 송금</option> {/* Add the new option */}
-                    {/* Add more options for additional components */}
+                    {authLevel && authLevel > 2 && (
+                        <>
+                            <option value="depositForm">계좌 충전</option>
+                            <option value="transferForm">계좌 송금</option>
+                        </>
+                    )}
                 </select>
             </label>
 

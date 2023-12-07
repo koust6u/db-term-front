@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Pagination from "./Pagination";
+import Pagination from "../Pagination";
 import Modal from "./Modal"; // Import the Modal component
 
 const MAX_BODY_LENGTH = 150;

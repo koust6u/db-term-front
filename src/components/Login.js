@@ -9,7 +9,7 @@ export default function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         axios.post('http://localhost:8080/member/login',
-            JSON.stringify({userId, password}),
+            JSON.stringify({ userId, password }),
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -20,8 +20,17 @@ export default function Login() {
                 window.location.href = "/";
             })
             .catch(error => {
-                alert("잘못된 아이디 또는 비밀번호입니다. 다시 입력해주세요.");
+                if (error.response && error.response.status === 400) {
+                    const rawDate = error.response.data;
+                    const formattedDate = new Date(rawDate).toLocaleString();
+                    alert(`회원님께서는 : ${formattedDate}까지 이용이 정지 되어있습니다.`);
+                    window.location.href="/"
+                } else {
+                    alert("잘못된 아이디 또는 비밀번호입니다. 다시 입력해주세요.");
+                    console.error('Error during login:', error);
+                }
             });
+
 
     }
     return (
@@ -64,11 +73,7 @@ export default function Login() {
                                        className="block text-sm font-medium leading-6 text-gray-900">
                                     Password
                                 </label>
-                                <div className="text-sm">
-                                    <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                                        Forgot password?
-                                    </a>
-                                </div>
+
                             </div>
                             <div className="mt-2">
                                 <input

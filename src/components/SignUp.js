@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {PhotoIcon, UserCircleIcon} from '@heroicons/react/24/solid'
-import './../css/SignUp.css'
+import {PhotoIcon, UserCircleIcon} from '@heroicons/react/24/solid';
 import axios from 'axios';
+import './../css/SignUp.css';
 
 export default function SignUp() {
     return (
@@ -11,8 +11,8 @@ export default function SignUp() {
     );
 }
 
-function Registration() {
 
+function Registration() {
     const [userId, setUserId] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -21,76 +21,73 @@ function Registration() {
     const [birthMonth, setBirthMonth] = useState('');
     const [birthDay, setBirthDay] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
+    const [photoUrl, setPhotoUrl] = useState('');
+    const [message, setMessage] = useState('');
+    const [tel, setTel] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [newPhotoUrl, setNewPhotoUrl] = useState('');
 
     const years = Array.from({length: new Date().getFullYear() - 1901 + 1}, (_, i) => 1901 + i);
+
+    const handlePhotoChange = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleModalSubmit = () => {
+        setPhotoUrl(newPhotoUrl);
+        setIsModalOpen(false);
+    };
+
     const handlePasswordConfirm = () => {
-        console.log('비밀번호 일치');
         var formattedBirthday;
         if (password === passwordConfirm) {
-            if(birthMonth < 10){
-             formattedBirthday = `${birthYear}-0${birthMonth}`;
-            }
-            else{
+            if (birthMonth < 10) {
+                formattedBirthday = `${birthYear}-0${birthMonth}`;
+            } else {
                 formattedBirthday = `${birthYear}-${birthMonth}`;
             }
 
-            if(birthDay < 10){
+            if (birthDay < 10) {
                 formattedBirthday += `-0${birthDay}`;
-            }
-            else{
+            } else {
                 formattedBirthday += `-${birthDay}`;
             }
+
             const userData = {
                 userId,
                 username,
                 password,
                 email,
-                birthday : formattedBirthday,
+                birthday: formattedBirthday,
+                name: username,
+                message,
+                tel,
+                url: newPhotoUrl || photoUrl,
             };
 
-            // Send a POST request to your API endpoint
-            axios.post('http://localhost:8080/member/signup', userData)
-                .then(response => {
+            axios
+                .post('http://localhost:8080/member/signup', userData)
+                .then((response) => {
                     console.log('Registration successful:', response.data);
-                    //홈으로 리다이렉트
-                    window.location.href='/';
+                    window.location.href = '/';
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error('Registration failed:', error);
                 });
-
         } else {
-            alert('비밀번호가 일치하지 않습니다.')
+            alert('비밀번호가 일치하지 않습니다.');
             console.log('비밀번호 불일치');
         }
-
     };
-
     return (
         <form>
             <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
 
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                        <div className="sm:col-span-4">
-                            <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
-                                닉네임
-                            </label>
-                            <div className="mt-2">
-                                <div
-                                    className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
 
-                                    <input
-                                        type="text"
-                                        name="username"
-                                        id="username"
-                                        autoComplete="username"
-                                        className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                        placeholder="앱에서 사용할 닉네임"
-                                    />
-                                </div>
-                            </div>
-                        </div>
+
+
 
                         <div className="sm:col-span-4">
                             <label htmlFor="userId" className="block text-sm font-medium leading-6 text-gray-900">
@@ -164,6 +161,7 @@ function Registration() {
                                 <UserCircleIcon className="h-12 w-12 text-gray-300" aria-hidden="true"/>
                                 <button
                                     type="button"
+                                    onClick={handlePhotoChange}
                                     className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                                 >
                                     Change
@@ -174,12 +172,61 @@ function Registration() {
                     </div>
                 </div>
 
+                <div className="sm:col-span-4">
+                    <label htmlFor="message" className="block text-sm font-medium leading-6 text-gray-900">
+                        메시지
+                    </label>
+                    <div className="mt-2">
+                        <input
+                            type="text"
+                            name="message"
+                            id="message"
+                            onChange={(e) => setMessage(e.target.value)}
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                            placeholder="프로필 소개를 입력하세요"
+                        />
+                    </div>
+                </div>
+
+
+                {isModalOpen && (
+                    <div
+                        className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
+                        <div className="bg-white p-8 max-w-md mx-auto rounded-md" style={{width: '400px'}}>
+                            <button className="absolute top-4 right-4 text-gray-500"
+                                    onClick={() => setIsModalOpen(false)}>
+                                X
+                            </button>
+                            <h2 className="text-xl font-semibold mb-4">Change Photo</h2>
+                            <label htmlFor="newPhotoUrl" className="block text-sm font-medium leading-6 text-gray-900">
+                                New Photo URL
+                            </label>
+                            <div className="mt-2">
+                                <input
+                                    type="text"
+                                    id="newPhotoUrl"
+                                    value={newPhotoUrl}
+                                    onChange={(e) => setNewPhotoUrl(e.target.value)}
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    placeholder="Enter the new photo URL"
+                                />
+                            </div>
+                            <button
+                                onClick={handleModalSubmit}
+                                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full mt-4"
+                            >
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                )}
+
                 <div className="border-b border-gray-900/10 pb-12">
                     <h2 className="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
-                    <p className="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive
-                        mail.</p>
 
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+
+
                         <div className="sm:col-span-3">
                             <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
                                 이름
@@ -198,6 +245,26 @@ function Registration() {
 
 
                         <div className="sm:col-span-4">
+                            <label htmlFor="tel" className="block text-sm font-medium leading-6 text-gray-900">
+                                전화번호
+                            </label>
+                            <div className="mt-2">
+                                <div
+                                    className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+
+                                    <input
+                                        type="text"
+                                        name="tel"
+                                        id="tel"
+                                        autoComplete="username"
+                                        className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                        placeholder="010-XXXX-XXXX"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="sm:col-span-4">
                             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                                 이메일 주소
                             </label>
@@ -214,66 +281,6 @@ function Registration() {
                         </div>
 
 
-                        <div className="col-span-full">
-                            <label htmlFor="street-address"
-                                   className="block text-sm font-medium leading-6 text-gray-900">
-                                주소
-                            </label>
-                            <div className="mt-2">
-                                <input
-                                    type="text"
-                                    name="street-address"
-                                    id="street-address"
-                                    autoComplete="street-address"
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="sm:col-span-2 sm:col-start-1">
-                            <label htmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">
-                                시/도
-                            </label>
-                            <div className="mt-2">
-                                <input
-                                    type="text"
-                                    name="city"
-                                    id="city"
-                                    autoComplete="address-level2"
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="sm:col-span-2">
-                            <label htmlFor="region" className="block text-sm font-medium leading-6 text-gray-900">
-                                상세 주소
-                            </label>
-                            <div className="mt-2">
-                                <input
-                                    type="text"
-                                    name="region"
-                                    id="region"
-                                    autoComplete="address-level1"
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="sm:col-span-2">
-                            <label htmlFor="postal-code" className="block text-sm font-medium leading-6 text-gray-900">
-                                ZIP / 우편 번호
-                            </label>
-                            <div className="mt-2">
-                                <input
-                                    type="text"
-                                    name="postal-code"
-                                    id="postal-code"
-                                    autoComplete="postal-code"
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                />
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -328,7 +335,7 @@ function Registration() {
 
             <div className="mt-6 flex items-center justify-end gap-x-6">
                 <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
-                    취소
+                    Cancel
                 </button>
                 <button
                     type="button"

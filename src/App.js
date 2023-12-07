@@ -13,12 +13,17 @@ import BookList from "./components/book/BookList";
 import Dashboard from "./components/account/DashBoard";
 import BookRegistrationForm from "./components/book/BookRegistrationForm";
 import MyBookList from "./components/book/MyBookList";
+import BorrowList from "./components/book/BorrowList";
+import MemberList from "./components/member/MemberList";
 
 axios.defaults.withCredentials = true;
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
+
+
+
         const fetchLoginStatus = async () => {
             try {
                 const response = await fetch('http://localhost:8080/member/health',{
@@ -52,6 +57,8 @@ function App() {
                   <Route path={"/account"} Component={Dashboard}/>
                   <Route path={"/book/registration"} Component={BookRegistrationForm}/>
                   <Route path={"/book/my"} Component={MyBookList}/>
+                  <Route path={"/book/borrow"} Component={BorrowList}/>
+                  <Route path={"/member/all"} Component={MemberList}/>
               </Routes>
       </BrowserRouter>
   );

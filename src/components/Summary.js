@@ -1,10 +1,46 @@
-const stats = [
-    { id: 1, name: 'Transactions every 24 hours', value: '44 million' },
-    { id: 2, name: 'Assets under holding', value: '$119 trillion' },
-    { id: 3, name: 'New users annually', value: '46,000' },
-]
+import React, { useState, useEffect } from "react";
 
-export default function Summary() {
+const stats = [
+    { id: 1, name: '우리 도서관 사용자', value: '44 million' },
+    { id: 2, name: '등록된 도서', value: '$119 trillion' },
+    { id: 3, name: '성장 가능성', value: '100%' },
+];
+
+const Summary = () => {
+    const [userCount, setUserCount] = useState(44000000); // Default value for user count
+    const [bookCount, setBookCount] = useState(119000000000); // Default value for book count
+
+    useEffect(() => {
+        // Fetch user count from the endpoint
+        const fetchUserCount = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/member/count");
+                const data = await response.json();
+                setUserCount(data); // Update user count in state
+            } catch (error) {
+                console.error("Error fetching user count:", error);
+            }
+        };
+
+        // Fetch book count from the endpoint
+        const fetchBookCount = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/book/count");
+                const data = await response.json();
+                setBookCount(data); // Update book count in state
+            } catch (error) {
+                console.error("Error fetching book count:", error);
+            }
+        };
+
+        fetchUserCount();
+        fetchBookCount();
+    }, []); // Run this effect only once on component mount
+
+    // Update the 'value' fields with the fetched counts
+    stats[0].value = userCount.toLocaleString();
+    stats[1].value = bookCount.toLocaleString();
+
     return (
         <div className="bg-white py-24 sm:py-32">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -20,5 +56,7 @@ export default function Summary() {
                 </dl>
             </div>
         </div>
-    )
-}
+    );
+};
+
+export default Summary;
