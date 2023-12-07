@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Home from './components/Home';
 import Header from "./core/Header";
-import Member from "./components/Member";
+import Member from "./components/member/Member";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import 'bootstrap/dist/css/bootstrap.min.css';

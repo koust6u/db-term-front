@@ -12,7 +12,6 @@ const DepositForm: React.FC = () => {
         }
 
         try {
-            // TODO: Replace 'YOUR_DEPOSIT_ENDPOINT' with the actual endpoint
             await axios.post('http://localhost:8080/account/deposit', { credit });
             alert('계좌 충전이 성공적으로 이루어졌습니다.');
             setCredit(0);
