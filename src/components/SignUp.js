@@ -69,7 +69,6 @@ function Registration() {
                 .post('http://35.216.75.115:8080/member/signup', userData)
                 .then((response) => {
                     console.log('Registration successful:', response.data);
-                    window.location.href = '/';
                 })
                 .catch((error) => {
                     console.error('Registration failed:', error);
@@ -256,6 +255,7 @@ function Registration() {
                                         type="text"
                                         name="tel"
                                         id="tel"
+                                        onChange={(e) => setTel(e.target.value)}
                                         autoComplete="username"
                                         className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                                         placeholder="010-XXXX-XXXX"
