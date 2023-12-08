@@ -18,7 +18,7 @@ const MemberList = () => {
 
     const fetchMembers = async () => {
         try {
-            const response = await fetch("http://localhost:8080/member/all", {
+            const response = await fetch("http://35.216.75.115:8080/member/all", {
                 method: "GET",
                 credentials: "include",
             });
@@ -125,7 +125,7 @@ const MemberList = () => {
 
     const handleUpdate = async (updatedInfo) => {
         try {
-            const response = await fetch("http://localhost:8080/member/auth", {
+            const response = await fetch("http://35.216.75.115:8080/member/auth", {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

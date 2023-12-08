@@ -12,7 +12,7 @@ const Dashboard: React.FC = () => {
         // Assuming you have a function to fetch the auth level
         const fetchAuthLevel = async () => {
             try {
-                const response = await fetch("http://localhost:8080/myAuth",{
+                const response = await fetch("http://35.216.75.115:8080/myAuth",{
                     credentials: 'include'
                 });
                 const data = await response.json();

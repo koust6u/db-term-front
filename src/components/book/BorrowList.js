@@ -17,7 +17,7 @@ const BorrowList = () => {
 
     const fetchBorrowedBooks = async () => {
         try {
-            const response = await fetch("http://localhost:8080/book/borrow", {
+            const response = await fetch("http://35.216.75.115:8080/book/borrow", {
                 method: 'GET',
                 credentials: 'include',
             });

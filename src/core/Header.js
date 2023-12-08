@@ -25,7 +25,7 @@ export default function Header({ isLoggedIn }) {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/member/profile`, {
+                const response = await fetch(`http://35.216.75.115:8080/member/profile`, {
                     method: 'GET',
                     credentials: 'include',
                 });

@@ -13,7 +13,7 @@ const TransferForm: React.FC = () => {
         }
 
         try {
-            await axios.post('http://localhost:8080/account/transfer/' + toMemberId, { amount });
+            await axios.post('http://35.216.75.115:8080/account/transfer/' + toMemberId, { amount });
             alert('송금이 성공적으로 이루어졌습니다.');
             setToMemberId('');
             setAmount(0);

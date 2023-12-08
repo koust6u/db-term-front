@@ -11,7 +11,7 @@ const Modal = ({ isOpen, closeModal, selectedBook, onDelete }) => {
     useEffect(() => {
         const fetchOrderStatus = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/order/status?title=${selectedBook.title}`, {
+                const response = await fetch(`http://35.216.75.115:8080/order/status?title=${selectedBook.title}`, {
                     method: 'GET',
                     credentials: 'include',
                 });
@@ -40,7 +40,7 @@ const Modal = ({ isOpen, closeModal, selectedBook, onDelete }) => {
 
     const handleSubmit = async () => {
         // Send a POST request to update the order status
-        const response = await fetch("http://localhost:8080/order/status", {
+        const response = await fetch("http://35.216.75.115:8080/order/status", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -65,7 +65,7 @@ const Modal = ({ isOpen, closeModal, selectedBook, onDelete }) => {
     const handleDelete = async () => {
         try {
             // Send a DELETE request to delete the book
-            await fetch(`http://localhost:8080/book?title=${selectedBook.title}`, {
+            await fetch(`http://35.216.75.115:8080/book?title=${selectedBook.title}`, {
                 method: "DELETE",
                 credentials: "include",
             });

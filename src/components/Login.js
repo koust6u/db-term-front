@@ -8,7 +8,7 @@ export default function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        axios.post('http://127.0.0.1:8080/member/login',
+        axios.post('http://35.216.75.115:8080/member/login',
             JSON.stringify({ userId, password }),
             {
                 headers: {

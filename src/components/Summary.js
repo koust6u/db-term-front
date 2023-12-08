@@ -14,7 +14,7 @@ const Summary = () => {
         // Fetch user count from the endpoint
         const fetchUserCount = async () => {
             try {
-                const response = await fetch("http://localhost:8080/member/count");
+                const response = await fetch("http://35.216.75.115:8080/member/count");
                 const data = await response.json();
                 setUserCount(data); // Update user count in state
             } catch (error) {
@@ -25,7 +25,7 @@ const Summary = () => {
         // Fetch book count from the endpoint
         const fetchBookCount = async () => {
             try {
-                const response = await fetch("http://localhost:8080/book/count");
+                const response = await fetch("http://35.216.75.115:8080/book/count");
                 const data = await response.json();
                 setBookCount(data); // Update book count in state
             } catch (error) {

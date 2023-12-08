@@ -26,7 +26,7 @@ function App() {
 
         const fetchLoginStatus = async () => {
             try {
-                const response = await fetch('http://localhost:8080/member/health',{
+                const response = await fetch('http://35.216.75.115:8080/member/health',{
                     method: 'GET',
                     credentials: 'include',
                 });

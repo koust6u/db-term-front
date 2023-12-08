@@ -25,7 +25,7 @@ export default function Legend(){
                                             <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                                                 <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
                                                     <img
-                                                        src="https://i.namu.wiki/i/HOa6onXorxP-P6KrAy3vCy1LiiP1CKmocBtWoKE8uiC_wO4HsTlN3IQqzFsx_YKuU6BWTVYR3yZXtpMcmKquq65_x1F8YlggFNCQ-aDrHBooaN70qtl9Y5U73LP9z0PNESFKXaB2GRaPk8B4O3AlQw.webp"
+                                                        src="http://blog.rightbrain.co.kr/CMS1/wp-content/uploads/2016/01/ebook-reader_1347015824-e1451967468839.jpg"
                                                         alt=""
                                                         className="h-full w-full object-cover object-center"
                                                     />

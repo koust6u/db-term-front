@@ -25,7 +25,7 @@ const Personal = () => {
 
     const fetchUserInfo = async () => {
         try {
-            const response = await fetch('http://localhost:8080/member', {
+            const response = await fetch('http://35.216.75.115:8080/member', {
                 credentials: 'include',
             });
             const data = await response.json();
@@ -59,7 +59,7 @@ const Personal = () => {
             };
 
             // Send a PATCH request to update user information
-            const response = await fetch('http://localhost:8080/member', {
+            const response = await fetch('http://35.216.75.115:8080/member', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

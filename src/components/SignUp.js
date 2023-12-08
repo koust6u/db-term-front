@@ -66,7 +66,7 @@ function Registration() {
             };
 
             axios
-                .post('http://localhost:8080/member/signup', userData)
+                .post('http://35.216.75.115:8080/member/signup', userData)
                 .then((response) => {
                     console.log('Registration successful:', response.data);
                     window.location.href = '/';

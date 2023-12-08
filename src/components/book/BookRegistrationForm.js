@@ -46,7 +46,7 @@ const BookRegistrationForm = () => {
 
         try {
             // Adjust the endpoint accordingly
-            await axios.post('http://localhost:8080/book/registration', bookInfo);
+            await axios.post('http://35.216.75.115:8080/book/registration', bookInfo);
             alert('책이 성공적으로 등록되었습니다.');
             window.location.href = "/book/my"
         } catch (error) {

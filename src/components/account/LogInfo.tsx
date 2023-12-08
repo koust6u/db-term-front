@@ -11,7 +11,7 @@ const LogInfo: React.FC = () => {
     useEffect(() => {
         const fetchAccountInfo = async () => {
             try {
-                const response = await axios.get<AccountInfoType>('http://localhost:8080/account');
+                const response = await axios.get<AccountInfoType>('http://35.216.75.115:8080/account');
                 setAccountInfo(response.data);
             } catch (error) {
                 console.error('Error fetching account info:', error);

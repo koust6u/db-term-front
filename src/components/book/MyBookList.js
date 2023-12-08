@@ -22,7 +22,7 @@ const MyBookList = () => {
 
     const fetchBooks = async () => {
         try {
-            const response = await fetch("http://localhost:8080/book", {
+            const response = await fetch("http://35.216.75.115:8080/book", {
                 method: 'GET',
                 credentials: 'include',
             });

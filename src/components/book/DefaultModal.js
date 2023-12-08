@@ -11,7 +11,8 @@ const DefaultModal = ({ isOpen, closeModal, selectedBook }) => {
 
     const handleBorrowClick = async () => {
         try {
-            const response = await fetch('http://localhost:8080/order/request', {
+            const response = await fetch('http://35.216.75.115:8080' +
+                '/order/request', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
