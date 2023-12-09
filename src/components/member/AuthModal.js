@@ -66,6 +66,7 @@ const AuthModal = ({ isOpen, closeModal, selectedMember, handleUpdate }) => {
                                 }
                                 className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                             >
+                                <option value={0}>사면</option>
                                 <option value={1}>1일</option>
                                 <option value={7}>1주일</option>
                                 <option value={30}>1달</option>
